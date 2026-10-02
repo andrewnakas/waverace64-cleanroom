@@ -47,11 +47,45 @@ def fact(cs, c, o, r):
     return d
 
 
+def strip_pictures(cs, tex, out):
+    """A picture stored as a stack of thin strips (title logo, craft thumbnails) keeps ONE coarse grid for the whole
+    picture, not one per strip (a grid per 4-pixel strip would keep nearly every row). Each strip's grid is the
+    picture grid's row at its height."""
+    recs = sorted(((c, o), r) for (c, o), r in tex.items() if r["kind"] == "tex")
+    by = {(d["c"], d["o"]): d for d in out}
+    groups, cur = [], []
+    for k, r in recs:
+        thin = r["h"] <= 8 and r["w"] >= 8 * r["h"]
+        if cur and thin and k[0] == cur[-1][0][0] and (r["w"], r["fmt"], r["siz"]) == tuple(cur[-1][1][x] for x in ("w", "fmt", "siz"))                 and 0 <= k[1] - (cur[-1][0][1] + cur[-1][1]["n"]) <= 16:
+            cur.append((k, r))
+            continue
+        if len(cur) >= 3:
+            groups.append(cur)
+        cur = [(k, r)] if thin else []
+    if len(cur) >= 3:
+        groups.append(cur)
+    for g in groups:
+        pic = np.concatenate([decode(cs, k[0], k[1], r) for k, r in g]).astype(np.float32)
+        n = 16 if max(pic.shape[:2]) >= 128 else 4
+        G = np.array(cspec.grid(pic, n)).reshape(n, n, 4)
+        y = 0
+        for k, r in g:
+            d = by[k]
+            m = int(round(len(d["grid"]) ** 0.5))
+            row = G[min(n - 1, int((y + r["h"] / 2) * n / pic.shape[0]))]
+            row = row[(np.arange(m) * n) // m]
+            d["grid"] = [[int(v) for v in px] for _ in range(m) for px in row]
+            y += r["h"]
+    return len(groups), sum(len(g) for g in groups)
+
+
 def main(argv):
     rom = open(argv[1], "rb").read()
     cs, sc = layout.containers(rom)
     tex, unres, _ = layout.textures(cs, sc)
     out = [fact(cs, c, o, r) for (c, o), r in sorted(tex.items())]
+    ng, ns = strip_pictures(cs, tex, out)
+    print(f"strip pictures: {ng} ({ns} strips share one grid each)")
     os.makedirs(os.path.join(HERE, "spec"), exist_ok=True)
     json.dump(out, open(os.path.join(HERE, "spec", "textures.json"), "w"), separators=(",", ":"))
     nt = sum(1 for t in out if t["kind"] == "tex")

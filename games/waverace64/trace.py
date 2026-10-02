@@ -100,6 +100,9 @@ def records(ram, cs):
         elif r["kind"] == "block" and r.get("dxt"):
             nb = r["texels"] * texscan.BPP[r["isiz"]] // 8
             rowb = 8 * (2048 // r["dxt"])
+            if not rowb:
+                stats["nosize"] += 1
+                continue
             wd, ht = rowb * 8 // bpp, max(1, nb // rowb)
         else:
             stats["nosize"] += 1
