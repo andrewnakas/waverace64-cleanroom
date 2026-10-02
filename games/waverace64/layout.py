@@ -164,6 +164,18 @@ def structured(b):
     return dl >= 3 or best >= 4
 
 
+def vertices(b):
+    """Share of 16-byte records that look like vertices (flag word 0, position not 0). Rider and craft models were
+    guessed as tall images; regenerating them drew huge grey shards over every scene."""
+    import numpy as np
+    n = len(b) // 16
+    if n < 4:
+        return 0.0
+    a = np.frombuffer(b[:n * 16], np.uint8).reshape(n, 16)
+    xyz = np.frombuffer(b[:n * 16], ">i2").reshape(n, 8)[:, :3]
+    return float(((a[:, 6] == 0) & (a[:, 7] == 0) & (np.abs(xyz).sum(1) > 0)).mean())
+
+
 def guessed(cs, sc, tex):
     """Single images between end-of-list markers (or filling a container) that nothing names: guess + overrides.
     Override values: [fmt, siz, w] or "skip" (not an image)."""
@@ -178,7 +190,7 @@ def guessed(cs, sc, tex):
         for a, b in coverage.gaps(cov[c]):
             key = f"{c:X}+{a:X}"
             o = ov.get(key)
-            if o == "skip" or b - a < 64 or (not o and structured(d[a:b])):
+            if o == "skip" or b - a < 64 or (not o and (structured(d[a:b]) or vertices(d[a:b]) >= 0.85)):
                 continue
             if not (o or (a >= 8 and d[a - 8:a] == MARK) or a == 0):
                 continue

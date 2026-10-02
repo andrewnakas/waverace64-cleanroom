@@ -1,7 +1,7 @@
 # Wave Race 64 clean room: status
 
-**Not published yet.** The clean ROM boots and plays in the browser, but menus / fonts / HUD / title logo are still
-retail pixels (textures the game loads from code). Publishing waits for those and for taint = 0 failing.
+**Published 2026-10-02:** https://andrewnakas.github.io/waverace64-cleanroom/ (repo `andrewnakas/waverace64-cleanroom`).
+Boots, menus readable, championship race starts (headless walk `D:/n64work/waverace64/shots/v3/sheet.png`), taint 0 failing of 5655.
 
 ## Decisions (logged as made)
 - 2026-10-01 16:05 ROM found at `D:/Wave Race 64 - Kawasaki Jet Ski (USA) (Rev 1).zip` (user pointed to D:). sha1 `508dfc2d…7966a`
@@ -35,6 +35,14 @@ retail pixels (textures the game loads from code). Publishing waits for those an
 - Announcer: 155 lines found by speech recognition on the retail clips (dirty room), words in `voice_lines.json`,
   placeholders by Piper TTS (`voices.py build`), practice pack written.
 
+- 2026-10-02 09:50 New session, user said "go": browser checks resumed (one headless Edge at a time, server only while a check runs).
+- 11:50 **Boot hang found and fixed.** The 22:10 clean ROM stopped on frame 3 (divide by zero, `break 7` at 0x8009FDCC):
+  8 guessed "images" in course containers were display lists + model pointer tables. Found by RDRAM dump of the hung game
+  (thread PC, then the pointer table traced back to container 3E17A0). `layout.structured` now rejects guesses holding
+  display-list commands or segment-8 pointer runs. Container bisecting (`bisect.py`) did not find it: it needed two containers.
+- 12:15 **Grey shards over every scene fixed**: rider / craft model containers (351260..35FCB0) were guessed as tall images
+  (vertex data). `layout.vertices` rejects guesses that are >= 85 % vertex-like records. Spec: 2011 textures, 149 palettes.
+
 ## Works
 - ROM map: 143 containers (129 MIO0 + raw), 84 scene load tables, segment map.
 - Texture spec: 2042+ textures and ~150 palettes (static display lists + run-time trace + frame arrays + guessed
@@ -46,13 +54,14 @@ retail pixels (textures the game loads from code). Publishing waits for those an
 - **Taint: 0 failing of 5717 streams** (current clean ROM, 22:10).
 - Earlier clean ROM booted to title, menus and a race in headless Edge (EmulatorJS). The current one is unverified.
 
-## BLOCKED (needs the user)
-- **Browser checks are paused.** To verify the current clean ROM (boot, menus readable, race) and to finish the
-  run-time trace I need the dev server on port 8163 and one headless Edge. Say "restart the browser checks" (or
-  start Claude Code with `CLAUDE_CODE_DISABLE_BG_SHELL_PRESSURE_REAP=1`). Until verified, nothing is published.
+## Known rough spots
+- Some menu background scenes still show large black / dark polygons (title and difficulty menu backdrops); races look right.
+  Probably one more non-image record (trace or frame-array source) over vertex data.
+- Title logo and the watercraft-select name bar / stat strips are colour-grid blur or noise, not drawn yet.
+- `29F7E0+0`, `2A2150+0` are several images guessed as one tall image (regenerated, but as one blur).
+- The headless emulator sometimes runs at a few frames per second (machine load); one check hung and had to be stopped.
 
 ## Next
-- Verify the clean ROM in the browser, then publish `andrewnakas/waverace64-cleanroom` + Pages.
 - Trace walks (championship, time trials, stunt, 2P, options, results) to confirm guessed sizes and find CI palettes.
 - Pictures still colour-grid blur: title logo, rider portraits, watercraft icons, HUD speed digits / small icons: draw briefs
   (needs the trace to know which texture is which).
@@ -63,4 +72,4 @@ retail pixels (textures the game loads from code). Publishing waits for those an
 ## For the morning
 - **Record the announcer**: practice pack at `D:/n64work/waverace64/practice/` (`practice_announcer_call_and_response.wav`,
   16 min, 155 lines, `SCRIPT.txt`). One voice: the race announcer. Takes go through the voice kit as usual.
-- Decide about the browser checks (see BLOCKED).
+- Play the published build: check sound, the menu backdrops and a full race.
