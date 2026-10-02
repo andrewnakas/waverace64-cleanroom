@@ -41,7 +41,7 @@ retail pixels (textures the game loads from code). Publishing waits for those an
   single images). Regeneration from colour grid + 2-bit alpha, palettes rebuilt, MIO0 re-compression, clean image builder.
 - Text labels re-typeset (menus, course names, messages, tutorial lines).
 - Audio: all 309 samples resynthesised from outlines, own codebooks and loop states; 155 announcer lines = TTS placeholders.
-- **Taint: 0 failing of 5717 streams** (last full run before the label re-typeset; re-run pending).
+- **Taint: 0 failing of 5717 streams** (current clean ROM, labels re-typeset, 21:00).
 - Earlier clean ROM booted to title, menus and a race in headless Edge (EmulatorJS). The current one is unverified.
 
 ## BLOCKED (needs the user)

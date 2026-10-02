@@ -29,7 +29,7 @@ def text_mask(lines, w, h, align="center"):
     m = np.zeros((h, w), np.float32)
     rows = len(lines)
     rh = h / rows
-    th = max(5, int(rh) - (2 if rh >= 9 else 1))                 # glyph height: leave a pixel of air
+    th = min(20, max(5, int(rh) - (2 if rh >= 9 else 1)))        # glyph height: leave a pixel of air; message boxes stay text-sized
     for i, s in enumerate(lines):
         line = strokefont.render_line(s, th, thickness=max(1.0, th / 7.5))
         line = _squeeze(line, w - 2)
