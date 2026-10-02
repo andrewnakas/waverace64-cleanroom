@@ -132,6 +132,10 @@ def main(argv):
     rom = open(argv[1], "rb").read()
     cs, sc = layout.containers(rom)
     spec = json.load(open(os.path.join(HERE, "spec", "textures.json")))
+    only = os.environ.get("WR_ONLY")                    # dev (bisecting a boot hang): hex container list, "-" = none
+    if only is not None:
+        keep = {int(x, 16) for x in only.split(",") if x and x != "-"}
+        spec = [t for t in spec if t["c"] in keep]
     patches = regenerate(spec, None, hooks())
     new = {}
     nbytes = 0
@@ -145,6 +149,8 @@ def main(argv):
     out, info = romtool.build(rom, cs, new)
     extra = []
     try:
+        if os.environ.get("WR_NOAUDIO"):
+            raise ImportError
         from games.waverace64 import audio
         out, ainfo = audio.regenerate(out)
         extra.append(ainfo)

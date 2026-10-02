@@ -133,11 +133,35 @@ def textures(cs, sc, use_trace=True):
                and k[1] + r["n"] <= len(cs[k[0]]["data"])}
         extend(cs, sc, tex)
         guessed(cs, sc, tex)
+        for k in [k for k, r in tex.items() if r["kind"] == "tex" and r.get("src") in ("guess", "extend")
+                  and structured(cs[k[0]]["data"][k[1]:k[1] + r["n"]])]:
+            del tex[k]
     return tex, unres, multi
 
 
 MARK = bytes.fromhex("b800000000000000")
 OVERRIDES = os.path.join(os.path.dirname(os.path.abspath(__file__)), "layout_overrides.json")
+
+
+def structured(b):
+    """True when a byte run holds display lists or pointer tables (so it is not one image). A wrong guess here
+    replaced a course's display lists and model table with pixels and the game stopped at boot (divide by zero)."""
+    import numpy as np
+    w = np.frombuffer(b[:len(b) // 8 * 8], ">u4").reshape(-1, 2)
+    if len(w) == 0:
+        return False
+    op = w[:, 0] >> 24
+    seg = ((w[:, 1] >> 24) == 8) & ((w[:, 1] & 0xFFFFFF) < 0x100000)
+    low = (w[:, 0] & 0xFFFFFF)
+    dl = int(((op == 0x06) & (low == 0) & seg).sum() + ((op == 0xFD) & ((low & 0xFFFF) == 0) & seg).sum()
+             + ((op == 0x04) & seg).sum() + ((w[:, 0] == 0xB8000000) & (w[:, 1] == 0)).sum())
+    a = np.frombuffer(b[:len(b) // 4 * 4], ">u4")
+    p = ((a >> 24) == 8) & ((a & 0xFFFFFF) < 0x100000) & (a % 4 == 0) & ((a & 0xFFFF) != 0)
+    run = best = 0
+    for i, v in enumerate(p):                           # a table: 4+ different segment-8 pointers in a row
+        run = run + 1 if v and (run == 0 or a[i] != a[i - 1]) else int(v)
+        best = max(best, run)
+    return dl >= 3 or best >= 4
 
 
 def guessed(cs, sc, tex):
@@ -154,7 +178,7 @@ def guessed(cs, sc, tex):
         for a, b in coverage.gaps(cov[c]):
             key = f"{c:X}+{a:X}"
             o = ov.get(key)
-            if o == "skip" or b - a < 64:
+            if o == "skip" or b - a < 64 or (not o and structured(d[a:b])):
                 continue
             if not (o or (a >= 8 and d[a - 8:a] == MARK) or a == 0):
                 continue
