@@ -4,6 +4,7 @@
 """
 import collections
 import json
+import os
 import struct
 import sys
 
@@ -84,8 +85,8 @@ def resolve(cs, sc, src, addr):
     return out
 
 
-def textures(cs, sc):
-    """-> {(container, offset): record}, unresolved list"""
+def textures(cs, sc, use_trace=True):
+    """-> {(container, offset): record}, unresolved list. Static display lists + run-time trace (trace.py)."""
     tex, unres, multi = {}, [], 0
     for off, c in cs.items():
         last_tlut = None
@@ -119,7 +120,37 @@ def textures(cs, sc):
                 old = tex.get(key)
                 if old is None or (rec.get("sized") and not old.get("sized")) or (rec["kind"] == old["kind"] and rec["n"] > old["n"] and rec.get("sized")):
                     tex[key] = dict(rec, src=off, at=r["at"])
+    if use_trace and os.path.exists(W + "trace.json"):
+        for r in json.load(open(W + "trace.json")):
+            key = (r["c"], r["o"])
+            old = tex.get(key)
+            r = {k: (tuple(v) if k == "pal" and v else v) for k, v in r.items() if k not in ("c", "o")}
+            if r.get("pal"):
+                r["pal"] = list(r["pal"])
+            if old is None or (r.get("sized") and not old.get("sized")) or (r["kind"] == old["kind"] == "tex" and r["n"] > old["n"] and r.get("sized", False) >= old.get("sized", False)):
+                tex[key] = dict(r, src="trace")
+        tex = {k: r for k, r in tex.items() if not (r["kind"] == "tlut" and r["count"] < 16 and r.get("src") == "trace")}
+        extend(cs, sc, tex)
     return tex, unres, multi
+
+
+def extend(cs, sc, tex):
+    """Arrays of frames / glyphs: an unknown run next to a known texture that is a whole number of
+    copies of its size holds more images of the same shape (code indexes them: &tex[i])."""
+    from games.waverace64 import coverage
+    cov = coverage.cover(cs, sc, tex)
+    added = 0
+    for c in cs:
+        recs = {o: r for (cc, o), r in tex.items() if cc == c and r["kind"] == "tex"}
+        ends = {o + r["n"]: r for o, r in recs.items()}
+        for a, b in coverage.gaps(cov[c]):
+            for shape in (ends.get(a), recs.get(b)):
+                if shape and shape["n"] >= 32 and (b - a) % shape["n"] == 0:
+                    for o in range(a, b, shape["n"]):
+                        tex[(c, o)] = dict(shape, src="extend")
+                        added += 1
+                    break
+    return added
 
 
 def main(argv):
