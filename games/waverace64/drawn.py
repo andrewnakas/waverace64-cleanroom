@@ -164,7 +164,51 @@ def strip(t):
     return None
 
 
+# Glyph arrays (one small image per character, indexed by the code): container -> (first offset, step, characters)
+ARRAYS = {0xF6090: [(0x387C0, 0x40, "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ-'\"+x,"),
+                    (0x39248, 0xC0, "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&-'\"/.|<>+"),
+                    (0x3B4D0, 0x300, "0123456789'\""),
+                    (0x3D8D8, 0x500, "0123456789/")]}
+
+
+def glyph(t):
+    """One character of a glyph array: our stroke glyph. IA: white ink; RGBA: the kept colour grid inside a dark rim."""
+    for first, step, chars in ARRAYS.get(t["c"], ()):
+        i, rem = divmod(t["o"] - first, step)
+        if rem or not 0 <= i < len(chars):
+            continue
+        w, h, c = t["w"], t["h"], chars[i]
+        gh = h - (2 if h <= 10 else 4)
+        try:
+            g = strokefont.render_line(c, gh, thickness=max(1.0, gh / (7.0 if t["fmt"] in (3, 4) else 10.0)))
+        except (KeyError, ValueError, IndexError):
+            return None
+        g = _squeeze(g, w - 2)
+        m = np.zeros((h, w), np.float32)
+        x, y = (w - g.shape[1]) // 2, (h - gh) // 2
+        m[y:y + gh, x:x + g.shape[1]] = g
+        m = np.clip(m, 0, 1)
+        img = np.zeros((h, w, 4), np.float32)
+        if t["fmt"] in (3, 4):
+            img[..., :3] = 255
+            img[..., 3] = m * 255
+        else:
+            from scipy.ndimage import binary_dilation
+            from cleanroom.decomp import gen
+            base = np.asarray(gen.from_digest(f"{t['c']:X}_{t['o']:X}", t)).astype(np.float32)[..., :3]
+            lit = base / (base.max(-1, keepdims=True) + 1) * 255
+            ink = m > 0.55
+            img[..., :3] = np.where(ink[..., None], lit, 20)
+            img[..., 3] = np.where(binary_dilation(ink, iterations=1), 255, 0)
+        return img.astype(np.uint8)
+    return None
+
+
 def hook(t):
+    if t["c"] in ARRAYS and t["kind"] == "tex":
+        img = glyph(t)
+        if img is not None:
+            return img
     if t["c"] in STRIPS:
         img = strip(t)
         if img is not None:

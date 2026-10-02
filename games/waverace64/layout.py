@@ -266,6 +266,10 @@ def guessed(cs, sc, tex):
                 continue
             tex[(c, a)] = dict(kind="tex", fmt=fmt, siz=siz, w=w, h=h, n=(w * h * (4 << siz) + 7) // 8, sized=True, src="override" if o else "guess", gap=n, score=0 if o else score)
             added += 1
+            used = (w * h * (4 << siz) + 7) // 8
+            if o and n - used >= 8:                      # an image whose last row is cut short: the rest is one more row
+                rw = (n - used) * 8 // (4 << siz)
+                tex[(c, a + used)] = dict(kind="tex", fmt=fmt, siz=siz, w=rw, h=1, n=n - used, sized=True, src="override", gap=n - used, score=0)
     return added
 
 
