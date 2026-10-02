@@ -38,25 +38,25 @@ def planes(b):
     return out
 
 
-def score(x, w):
-    h = len(x) // w
-    if h < 2:
-        return 1e9
-    m = x[:h * w].reshape(h, w)
-    dv = np.abs(np.diff(m, axis=0)).mean()
-    dh = np.abs(np.diff(m, axis=1)).mean()
-    return dv + 0.5 * dh
+def lagdiff(x, k):
+    return float(np.abs(x[k:] - x[:-k]).mean()) if len(x) > k + 8 else 1e9
 
 
 def guess(b):
+    """Row width = the lag at which texels match far better than at the lags around it."""
     best = None
     for name, bpt, x in planes(b):
-        base = np.abs(np.diff(x)).mean() + 1e-6
+        x = x[:16384]
+        if x.std() < 1:
+            continue
         for w in WIDTHS:
-            s = score(x, w) / (x.std() + 1.0)
-            if best is None or s < best[0]:
+            if len(x) < 3 * w:
+                continue
+            around = (lagdiff(x, w - 2) + lagdiff(x, w + 2) + lagdiff(x, w - 3) + lagdiff(x, w + 3)) / 4 + 1e-6
+            s = lagdiff(x, w) / around
+            if best is None or s < best[0] * 0.9:
                 best = (s, name, w)
-    return best
+    return best or (9.0, "i8", 32)
 
 
 def render(b, name, w):

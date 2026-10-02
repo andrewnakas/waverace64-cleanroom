@@ -30,11 +30,16 @@ def nbytes(t):
 
 
 def offmap(rom, clean):
-    """retail container offset -> clean container offset (load tables are parallel)."""
+    """retail container offset -> clean container offset (same table slots; blocks may sit in the ROM tail)."""
     m = {}
-    for s, t in zip(layout.scenes(rom), layout.scenes(clean)):
-        for a, b in zip(s, t):
-            m[a[0]] = b[0]
+    o = layout.TABLES[0]
+    while o < layout.TABLES[1]:
+        st, en, flag, dest = struct.unpack_from(">4I", rom, o)
+        if 0xF0000 <= st < en <= 0x40B530 and 0 < flag <= 12 and dest < 0x200000:
+            m[st] = struct.unpack_from(">I", clean, o)[0]
+            o += 16
+        else:
+            o += 4
     return m
 
 
@@ -77,6 +82,13 @@ def main(argv):
     cc, _ = layout.containers(clean)
     om = offmap(rom, clean)
     om.update({o: o for o in cs if o not in om})
+    used = set(om.values())
+    for o in cs:                                        # a block no table names: it was laid out again with its run
+        if om[o] not in cc:
+            free = [k for k in sorted(cc) if k not in used and cc[k]["mio0"] and len(cc[k]["data"]) == len(cs[o]["data"])]
+            if free:
+                om[o] = free[0]
+                used.add(free[0])
     ccs = {o: cc[om[o]] for o in cs if om[o] in cc}
     assert len(ccs) == len(cs), "containers missing in the clean ROM"
 

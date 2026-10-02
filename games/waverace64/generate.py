@@ -19,6 +19,7 @@ from games.waverace64 import layout, romtool
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 BPP = [4, 8, 16, 32]
+SALTS = set(json.load(open(os.path.join(HERE, "salts.json"))))
 
 
 def key(t):
@@ -32,7 +33,15 @@ def image(t, hooks=None):
             img = h(t)
             if img is not None:
                 return img
-    return gen.from_digest(key(t), t)
+    img = gen.from_digest(key(t), t)
+    if key(t) in SALTS:                                 # smooth ramps can come out equal to the original run: dither them
+        rng = np.random.default_rng(int(key(t).replace("_", ""), 16) & 0xFFFFFFFF)
+        x = np.asarray(img).astype(np.int16)
+        j = rng.integers(-9, 10, x.shape).astype(np.int16)
+        a = x[..., 3:4]
+        j[..., 3:4] = np.where((a > 8) & (a < 247), rng.integers(-3, 4, a.shape), 0)
+        img = np.clip(x + j, 0, 255).astype(np.uint8)
+    return img
 
 
 def rgba16(px):

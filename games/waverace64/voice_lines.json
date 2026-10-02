@@ -1,0 +1,634 @@
+{
+ "_doc": "Announcer lines for the voice sample slots (words as heard in the game, checked by hand). Spoken by a TTS placeholder; the user's own takes replace them.",
+ "_characters": {
+  "announcer": {
+   "tts": {
+    "model": "en_US-ryan-high",
+    "semitones": 1.0,
+    "length": 0.95,
+    "noise": 0.9,
+    "noise_w": 0.95
+   }
+  }
+ },
+ "06D5C0_000000": {
+  "who": "announcer",
+  "text": "Oops, one chance left!"
+ },
+ "06D5C0_004FD0": {
+  "who": "announcer",
+  "text": "Don't miss any more!"
+ },
+ "06D5C0_007AF0": {
+  "who": "announcer",
+  "text": "No problem!"
+ },
+ "06D5C0_009420": {
+  "who": "announcer",
+  "text": "Don't go that way!"
+ },
+ "06D5C0_00BDD0": {
+  "who": "announcer",
+  "text": "Get back in the race!"
+ },
+ "06D5C0_00E740": {
+  "who": "announcer",
+  "text": "Wrong way!"
+ },
+ "06D5C0_011CC0": {
+  "who": "announcer",
+  "text": "What happened?!"
+ },
+ "06D5C0_013CB0": {
+  "who": "announcer",
+  "text": "Watch out!"
+ },
+ "06D5C0_015750": {
+  "who": "announcer",
+  "text": "You gotta be careful!"
+ },
+ "06D5C0_017FD0": {
+  "who": "announcer",
+  "text": "Go!"
+ },
+ "06D5C0_01B5B0": {
+  "who": "announcer",
+  "text": "You did it!"
+ },
+ "06D5C0_01D680": {
+  "who": "announcer",
+  "text": "Banzai!"
+ },
+ "06D5C0_020D30": {
+  "who": "announcer",
+  "text": "Nice try!"
+ },
+ "06D5C0_023470": {
+  "who": "announcer",
+  "text": "You almost had it!"
+ },
+ "06D5C0_026260": {
+  "who": "announcer",
+  "text": "That's great! A new record!"
+ },
+ "06D5C0_02CB90": {
+  "who": "announcer",
+  "text": "Come back! Try again!"
+ },
+ "06D5C0_030E70": {
+  "who": "announcer",
+  "text": "What a cool jump!"
+ },
+ "06D5C0_034F10": {
+  "who": "announcer",
+  "text": "Cool!"
+ },
+ "06D5C0_037700": {
+  "who": "announcer",
+  "text": "That's a nice move!"
+ },
+ "06D5C0_03AED0": {
+  "who": "announcer",
+  "text": "Great!"
+ },
+ "06D5C0_03C580": {
+  "who": "announcer",
+  "text": "Excellent!"
+ },
+ "06D5C0_03E750": {
+  "who": "announcer",
+  "text": "Fantastic!"
+ },
+ "06D5C0_041950": {
+  "who": "announcer",
+  "text": "What a show! I love it!"
+ },
+ "06D5C0_045520": {
+  "who": "announcer",
+  "text": "Cool move!"
+ },
+ "06D5C0_048360": {
+  "who": "announcer",
+  "text": "How'd you do that?"
+ },
+ "06D5C0_04ACF0": {
+  "who": "announcer",
+  "text": "Keep the pace!"
+ },
+ "06D5C0_04CE70": {
+  "who": "announcer",
+  "text": "You're last!"
+ },
+ "06D5C0_04F060": {
+  "who": "announcer",
+  "text": "No misses, beautiful!"
+ },
+ "06D5C0_052320": {
+  "who": "announcer",
+  "text": "Final lap, keep it up!"
+ },
+ "06D5C0_055810": {
+  "who": "announcer",
+  "text": "This is the final lap, come on!"
+ },
+ "06D5C0_05B9E0": {
+  "who": "announcer",
+  "text": "Hey! The final lap!"
+ },
+ "06D5C0_05F8D0": {
+  "who": "announcer",
+  "text": "That's a lap record!"
+ },
+ "06D5C0_064390": {
+  "who": "announcer",
+  "text": "Keep going!"
+ },
+ "06D5C0_066FE0": {
+  "who": "announcer",
+  "text": "Checkpoint cleared!"
+ },
+ "06D5C0_069B10": {
+  "who": "announcer",
+  "text": "Maximum power!"
+ },
+ "06D5C0_06DA10": {
+  "who": "announcer",
+  "text": "You've moved up!"
+ },
+ "06D5C0_070230": {
+  "who": "announcer",
+  "text": "Keep going!"
+ },
+ "06D5C0_071F00": {
+  "who": "announcer",
+  "text": "You're doing great!"
+ },
+ "06D5C0_074730": {
+  "who": "announcer",
+  "text": "Go for it!"
+ },
+ "06D5C0_076510": {
+  "who": "announcer",
+  "text": "You're in first!"
+ },
+ "06D5C0_0792C0": {
+  "who": "announcer",
+  "text": "You're in the lead!"
+ },
+ "06D5C0_07C640": {
+  "who": "announcer",
+  "text": "You're in second!"
+ },
+ "06D5C0_07EE70": {
+  "who": "announcer",
+  "text": "You're in third!"
+ },
+ "06D5C0_080E60": {
+  "who": "announcer",
+  "text": "You've been overtaken!"
+ },
+ "06D5C0_084000": {
+  "who": "announcer",
+  "text": "You're in second!"
+ },
+ "06D5C0_086930": {
+  "who": "announcer",
+  "text": "You're in third!"
+ },
+ "06D5C0_089550": {
+  "who": "announcer",
+  "text": "You're in fourth!"
+ },
+ "06D5C0_08C3C0": {
+  "who": "announcer",
+  "text": "Go!"
+ },
+ "06D5C0_08F0D0": {
+  "who": "announcer",
+  "text": "One!"
+ },
+ "06D5C0_0903D0": {
+  "who": "announcer",
+  "text": "Two!"
+ },
+ "06D5C0_091550": {
+  "who": "announcer",
+  "text": "Three!"
+ },
+ "06D5C0_092940": {
+  "who": "announcer",
+  "text": "Wow! You left everybody behind!"
+ },
+ "06D5C0_098CC0": {
+  "who": "announcer",
+  "text": "Oh, you're losing!"
+ },
+ "06D5C0_09D0F0": {
+  "who": "announcer",
+  "text": "Time to get serious!"
+ },
+ "06D5C0_0A0800": {
+  "who": "announcer",
+  "text": "Looking good"
+ },
+ "06D5C0_0A3330": {
+  "who": "announcer",
+  "text": "Not bad!"
+ },
+ "06D5C0_0A5A90": {
+  "who": "announcer",
+  "text": "Get back in the water!"
+ },
+ "06D5C0_0A8D30": {
+  "who": "announcer",
+  "text": "Get ready for the first race!"
+ },
+ "06D5C0_0AE900": {
+  "who": "announcer",
+  "text": "Watch the signal!"
+ },
+ "06D5C0_0B11A0": {
+  "who": "announcer",
+  "text": "Have a good race!"
+ },
+ "06D5C0_0B4C20": {
+  "who": "announcer",
+  "text": "This is the final round. Good luck!"
+ },
+ "06D5C0_0BB700": {
+  "who": "announcer",
+  "text": "Okay!"
+ },
+ "06D5C0_0BDC60": {
+  "who": "announcer",
+  "text": "Good!"
+ },
+ "06D5C0_0BFEB0": {
+  "who": "announcer",
+  "text": "Nice!"
+ },
+ "06D5C0_0C1B30": {
+  "who": "announcer",
+  "text": "Okay!"
+ },
+ "06D5C0_0C35F0": {
+  "who": "announcer",
+  "text": "You finished first and got seven points. Great race!"
+ },
+ "06D5C0_0CBCD0": {
+  "who": "announcer",
+  "text": "You finished second and got four points! Nice going!"
+ },
+ "06D5C0_0D3AD0": {
+  "who": "announcer",
+  "text": "You finished third and got two points. Pretty good!"
+ },
+ "06D5C0_0DBB70": {
+  "who": "announcer",
+  "text": "You finished fourth and got one point. Keep trying."
+ },
+ "06D5C0_0E2EB0": {
+  "who": "announcer",
+  "text": "You finished fourth. I'm sorry, you've been disqualified."
+ },
+ "06D5C0_0EB730": {
+  "who": "announcer",
+  "text": "Sorry, you didn't accumulate enough points to move on to the next round. Better luck next time!"
+ },
+ "06D5C0_0F5AE0": {
+  "who": "announcer",
+  "text": "Move on to the next round!"
+ },
+ "06D5C0_0FA9A0": {
+  "who": "announcer",
+  "text": "I'm sorry, you're out!"
+ },
+ "06D5C0_0FEC30": {
+  "who": "announcer",
+  "text": "Oh man, you're out!"
+ },
+ "06D5C0_103E50": {
+  "who": "announcer",
+  "text": "Wave race!"
+ },
+ "06D5C0_106760": {
+  "who": "announcer",
+  "text": "Start your engine!"
+ },
+ "06D5C0_1099A0": {
+  "who": "announcer",
+  "text": "On your mark, get set!"
+ },
+ "06D5C0_10E2A0": {
+  "who": "announcer",
+  "text": "Are you ready?"
+ },
+ "06D5C0_110850": {
+  "who": "announcer",
+  "text": "Who's going to win?"
+ },
+ "06D5C0_1134F0": {
+  "who": "announcer",
+  "text": "Everybody's behind you!"
+ },
+ "06D5C0_1170D0": {
+  "who": "announcer",
+  "text": "Let's go!"
+ },
+ "06D5C0_11B570": {
+  "who": "announcer",
+  "text": "Don't sweat it!"
+ },
+ "06D5C0_11D870": {
+  "who": "announcer",
+  "text": "Looks like trouble!"
+ },
+ "06D5C0_120170": {
+  "who": "announcer",
+  "text": "You're still in first!"
+ },
+ "06D5C0_1230E0": {
+  "who": "announcer",
+  "text": "What are you thinking?"
+ },
+ "06D5C0_127720": {
+  "who": "announcer",
+  "text": "What a hot lap!"
+ },
+ "06D5C0_12A4D0": {
+  "who": "announcer",
+  "text": "Better get moving!"
+ },
+ "06D5C0_12CEB0": {
+  "who": "announcer",
+  "text": "Moving up!"
+ },
+ "06D5C0_12E7F0": {
+  "who": "announcer",
+  "text": "Not that hot!"
+ },
+ "06D5C0_131240": {
+  "who": "announcer",
+  "text": "That was weak."
+ },
+ "06D5C0_133240": {
+  "who": "announcer",
+  "text": "Where'd it go?"
+ },
+ "06D5C0_135C10": {
+  "who": "announcer",
+  "text": "Good job!"
+ },
+ "06D5C0_137ED0": {
+  "who": "announcer",
+  "text": "Not even close!"
+ },
+ "06D5C0_13AB80": {
+  "who": "announcer",
+  "text": "Smoke it!"
+ },
+ "2034A0_000000": {
+  "who": "announcer",
+  "text": "Warm up time. Follow that dolphin."
+ },
+ "2034A0_004360": {
+  "who": "announcer",
+  "text": "To start racing, select Start the Race from the Pause screen menu."
+ },
+ "2034A0_00CAD0": {
+  "who": "announcer",
+  "text": "Press up and down on the control stick to lean the rider forward and back."
+ },
+ "2034A0_014770": {
+  "who": "announcer",
+  "text": "When you jump, you can control the height of your jump by leaning the rider forward or back."
+ },
+ "2034A0_01F610": {
+  "who": "announcer",
+  "text": "To corner sharply, press down on the control stick while turning."
+ },
+ "2034A0_026D00": {
+  "who": "announcer",
+  "text": "To do a barrel roll while on the ramp, quickly move the control stick left, then right, and hold."
+ },
+ "2034A0_033730": {
+  "who": "announcer",
+  "text": "To do a barrel roll while on the ramp, quickly move the control stick right, then left, and hold."
+ },
+ "2034A0_03F860": {
+  "who": "announcer",
+  "text": "To do a flip, while on the ramp, quickly move the control stick up, then down, and hold."
+ },
+ "2034A0_04B5D0": {
+  "who": "announcer",
+  "text": "To ride backwards, release the throttle, rotate the control stick clockwise, then push it down and hold."
+ },
+ "2034A0_057460": {
+  "who": "announcer",
+  "text": "To ride standing up, release the throttle, rotate the control stick counterclockwise, then push it up and hold."
+ },
+ "2034A0_062CE0": {
+  "who": "announcer",
+  "text": "To do a handstand, release the throttle and quickly move the control stick down, then up and hold."
+ },
+ "2034A0_06E410": {
+  "who": "announcer",
+  "text": "Welcome to"
+ },
+ "2034A0_070340": {
+  "who": "announcer",
+  "text": "Dolphin Park"
+ },
+ "2034A0_072410": {
+  "who": "announcer",
+  "text": "Sunny Beach"
+ },
+ "2034A0_074730": {
+  "who": "announcer",
+  "text": "Sunset Bay"
+ },
+ "2034A0_076A70": {
+  "who": "announcer",
+  "text": "Marine Fortress"
+ },
+ "2034A0_0794D0": {
+  "who": "announcer",
+  "text": "Drake Lake"
+ },
+ "2034A0_07B370": {
+  "who": "announcer",
+  "text": "Port Blue."
+ },
+ "2034A0_07CF60": {
+  "who": "announcer",
+  "text": "Twilight City."
+ },
+ "2034A0_07F540": {
+  "who": "announcer",
+  "text": "Southern Island"
+ },
+ "2034A0_0817B0": {
+  "who": "announcer",
+  "text": "Glacier Coast."
+ },
+ "2034A0_083C60": {
+  "who": "announcer",
+  "text": "Stereo"
+ },
+ "2034A0_085910": {
+  "who": "announcer",
+  "text": "Headphones"
+ },
+ "2034A0_087570": {
+  "who": "announcer",
+  "text": "Mono!"
+ },
+ "2034A0_088AB0": {
+  "who": "announcer",
+  "text": "Are you sure?"
+ },
+ "2034A0_08A590": {
+  "who": "announcer",
+  "text": "Select your course, please."
+ },
+ "2034A0_08E3E0": {
+  "who": "announcer",
+  "text": "Select your watercraft, please."
+ },
+ "2A99B0_000000": {
+  "who": "announcer",
+  "text": "Seconds behind!"
+ },
+ "2A99B0_002400": {
+  "who": "announcer",
+  "text": "seconds ahead!"
+ },
+ "2A99B0_004410": {
+  "who": "announcer",
+  "text": "You're way out!"
+ },
+ "2A99B0_005FE0": {
+  "who": "announcer",
+  "text": "You are way behind!"
+ },
+ "2A99B0_009430": {
+  "who": "announcer",
+  "text": "It's close, really close!"
+ },
+ "2A99B0_00DB20": {
+  "who": "announcer",
+  "text": "What a great race!"
+ },
+ "2A99B0_010D50": {
+  "who": "announcer",
+  "text": "Hey, keep your eyes glued to the course!"
+ },
+ "2A99B0_0161C0": {
+  "who": "announcer",
+  "text": "You've got a commanding lead!"
+ },
+ "2A99B0_01AA40": {
+  "who": "announcer",
+  "text": "Two!"
+ },
+ "2A99B0_01BD10": {
+  "who": "announcer",
+  "text": "Three!"
+ },
+ "2A99B0_01CD10": {
+  "who": "announcer",
+  "text": "Four!"
+ },
+ "2A99B0_01DE40": {
+  "who": "announcer",
+  "text": "Five!"
+ },
+ "2A99B0_01EC90": {
+  "who": "announcer",
+  "text": "Six!"
+ },
+ "2A99B0_020230": {
+  "who": "announcer",
+  "text": "Seven."
+ },
+ "2A99B0_021620": {
+  "who": "announcer",
+  "text": "Eight!"
+ },
+ "2A99B0_022380": {
+  "who": "announcer",
+  "text": "Nine!"
+ },
+ "2A99B0_023850": {
+  "who": "announcer",
+  "text": "Ten!"
+ },
+ "2A99B0_024B20": {
+  "who": "announcer",
+  "text": "Eleven!"
+ },
+ "2A99B0_025F10": {
+  "who": "announcer",
+  "text": "Twelve!"
+ },
+ "2A99B0_027320": {
+  "who": "announcer",
+  "text": "Thirteen!"
+ },
+ "2A99B0_028C10": {
+  "who": "announcer",
+  "text": "Fourteen!"
+ },
+ "2A99B0_02A1A0": {
+  "who": "announcer",
+  "text": "Fifteen!"
+ },
+ "2A99B0_02B7F0": {
+  "who": "announcer",
+  "text": "Sixteen!"
+ },
+ "2A99B0_02D430": {
+  "who": "announcer",
+  "text": "Seventeen!"
+ },
+ "2A99B0_02F000": {
+  "who": "announcer",
+  "text": "Eighteen!"
+ },
+ "2A99B0_0305D0": {
+  "who": "announcer",
+  "text": "Nineteen!"
+ },
+ "2DBA30_000000": {
+  "who": "announcer",
+  "text": "You're the champion! Congratulations!"
+ },
+ "2DBA30_009730": {
+  "who": "announcer",
+  "text": "Third place, good job!"
+ },
+ "2DBA30_00F170": {
+  "who": "announcer",
+  "text": "Maybe next time!"
+ },
+ "2DBA30_012620": {
+  "who": "announcer",
+  "text": "You get to move up to the next class!"
+ },
+ "2DBA30_017CA0": {
+  "who": "announcer",
+  "text": "You are a great Wave Racer!"
+ },
+ "2DBA30_01F2B0": {
+  "who": "announcer",
+  "text": "Next time, take it all!"
+ },
+ "2DBA30_023DD0": {
+  "who": "announcer",
+  "text": "You've got to do better next time."
+ },
+ "2DBA30_027B80": {
+  "who": "announcer",
+  "text": "Second place, way to go!"
+ }
+}

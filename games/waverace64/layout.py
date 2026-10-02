@@ -22,7 +22,7 @@ def scenes(rom):
         return struct.unpack_from(">4I", rom, o)
 
     def ok(e):
-        return 0xF0000 <= e[0] < e[1] <= 0x40B530 and 0 < e[2] <= 12 and e[3] < 0x200000
+        return 0xF0000 <= e[0] < e[1] <= 0x800000 and 0 < e[2] <= 12 and e[3] < 0x200000      # 0x7C4C10..: blocks moved to the ROM tail (clean image)
     o, out = TABLES[0], []
     while o < TABLES[1]:
         if ok(ent(o)):
@@ -129,9 +129,48 @@ def textures(cs, sc, use_trace=True):
                 r["pal"] = list(r["pal"])
             if old is None or (r.get("sized") and not old.get("sized")) or (r["kind"] == old["kind"] == "tex" and r["n"] > old["n"] and r.get("sized", False) >= old.get("sized", False)):
                 tex[key] = dict(r, src="trace")
-        tex = {k: r for k, r in tex.items() if not (r["kind"] == "tlut" and r["count"] < 16 and r.get("src") == "trace")}
+        tex = {k: r for k, r in tex.items() if not (r["kind"] == "tlut" and r["count"] < 16 and r.get("src") == "trace")
+               and k[1] + r["n"] <= len(cs[k[0]]["data"])}
         extend(cs, sc, tex)
+        guessed(cs, sc, tex)
     return tex, unres, multi
+
+
+MARK = bytes.fromhex("b800000000000000")
+OVERRIDES = os.path.join(os.path.dirname(os.path.abspath(__file__)), "layout_overrides.json")
+
+
+def guessed(cs, sc, tex):
+    """Single images between end-of-list markers (or filling a container) that nothing names: guess + overrides.
+    Override values: [fmt, siz, w] or "skip" (not an image)."""
+    from games.waverace64 import coverage, guess
+    ov = json.load(open(OVERRIDES)) if os.path.exists(OVERRIDES) else {}
+    cov = coverage.cover(cs, sc, tex)
+    added = 0
+    for c in sorted(cs):
+        d = cs[c]["data"]
+        if 6 in cs[c]["flags"]:
+            continue
+        for a, b in coverage.gaps(cov[c]):
+            key = f"{c:X}+{a:X}"
+            o = ov.get(key)
+            if o == "skip" or b - a < 64:
+                continue
+            if not (o or (a >= 8 and d[a - 8:a] == MARK) or a == 0):
+                continue
+            n = b - a
+            if o:
+                fmt, siz, w = o[:3]
+                h = n * 8 // (4 << siz) // w
+            else:
+                g = guess.guess(d[a:b])
+                fmt, siz, w, h = g["fmt"], g["siz"], g["w"], g["h"]
+                score = round(g["score"], 2)
+            if (w * h * (4 << siz) + 7) // 8 > n or h < 1:
+                continue
+            tex[(c, a)] = dict(kind="tex", fmt=fmt, siz=siz, w=w, h=h, n=(w * h * (4 << siz) + 7) // 8, sized=True, src="override" if o else "guess", gap=n, score=0 if o else score)
+            added += 1
+    return added
 
 
 def extend(cs, sc, tex):
