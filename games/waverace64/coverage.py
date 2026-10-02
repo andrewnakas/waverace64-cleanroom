@@ -20,6 +20,10 @@ def valid(d, o):
         return d[o + 1:o + 8] == bytes(7)
     if c in (0xB6, 0xB7, 0xBF, 0xB5, 0xBD):
         return low24 == 0
+    if c in (0xF7, 0xF8, 0xF9, 0xFB):                 # colour registers: nothing in the low 24 bits (image bytes often start with these)
+        return low24 == 0
+    if c == 0xFA:
+        return d[o + 1] == 0
     if c in (0xFD, 0xFF, 0xFE):
         return d[o + 2] & 0xF0 == 0 and d[o + 4] < 0x10
     if c in (0xF5, 0xF3, 0xF4, 0xF2, 0xF0):

@@ -24,19 +24,40 @@ retail pixels (textures the game loads from code). Publishing waits for those an
 - 18:40 Headless input is timed by the game's own frame counter (`D_800D4B00`), not wall time: the emulator's speed
   changes with machine load and wall-timed presses were lost (`cdp_shot.py --drive`, `walk.py`).
 
+- 19:10 The system stopped my background dev server and retail walk-throughs (PC critically low on memory) and
+  told me not to restart them unasked. Everything since is offline work; **no browser check has been run on the
+  current clean ROM**.
+- 20:00 Code-loaded art found offline instead: the asset segment and the menu containers store each image after an
+  end-of-list marker, so an unknown run between markers is exactly one image. `guess.py` finds format + width
+  (row repeat, 8-byte padding), `layout_overrides.json` corrects by hand, the run-time trace overrides both when
+  it has seen the texture. Unknown container bytes: 1.88 MB -> 8 KB (plus 266 KB of course path data, kept as geometry).
+- 20:30 Label words read with Windows OCR in the dirty room (`text_labels.json`, 190 labels), re-typeset by `drawn.py`.
+- Announcer: 155 lines found by speech recognition on the retail clips (dirty room), words in `voice_lines.json`,
+  placeholders by Piper TTS (`voices.py build`), practice pack written.
+
 ## Works
 - ROM map: 143 containers (129 MIO0 + raw), 84 scene load tables, segment map.
-- Texture spec + regeneration (colour grid + 2-bit alpha), palettes rebuilt, MIO0 re-compression, clean image builder.
-- Audio: all samples resynthesised from outlines, own codebooks (same predictor count) and loop states.
-- Clean ROM boots to title, menus and a race in headless Edge (EmulatorJS).
+- Texture spec: 2042+ textures and ~150 palettes (static display lists + run-time trace + frame arrays + guessed
+  single images). Regeneration from colour grid + 2-bit alpha, palettes rebuilt, MIO0 re-compression, clean image builder.
+- Text labels re-typeset (menus, course names, messages, tutorial lines).
+- Audio: all 309 samples resynthesised from outlines, own codebooks and loop states; 155 announcer lines = TTS placeholders.
+- **Taint: 0 failing of 5717 streams** (last full run before the label re-typeset; re-run pending).
+- Earlier clean ROM booted to title, menus and a race in headless Edge (EmulatorJS). The current one is unverified.
+
+## BLOCKED (needs the user)
+- **Browser checks are paused.** To verify the current clean ROM (boot, menus readable, race) and to finish the
+  run-time trace I need the dev server on port 8163 and one headless Edge. Say "restart the browser checks" (or
+  start Claude Code with `CLAUDE_CODE_DISABLE_BG_SHELL_PRESSURE_REAP=1`). Until verified, nothing is published.
 
 ## Next
-- Finish the trace walks (all menus, options, each mode, results), then look at what is still unknown
-  (`gapsheet.py`, dirty contact sheets) and add overrides for the rest.
-- Re-typeset text textures (menus, HUD, fonts), draw rider portraits / watercraft icons / title logo.
-- Taint 0 failing, then publish `andrewnakas/waverace64-cleanroom` + Pages.
-- Voices (announcer): Piper placeholders + practice pack `D:/n64work/waverace64/practice/`.
-- Check: in headless runs the A button did not always confirm menu items (Start did). Verify on the clean build.
+- Verify the clean ROM in the browser, then publish `andrewnakas/waverace64-cleanroom` + Pages.
+- Trace walks (championship, time trials, stunt, 2P, options, results) to confirm guessed sizes and find CI palettes.
+- Pictures: title logo, rider portraits, watercraft icons, FINISH / LOST / WON / RETIRE / 1st-4th banners, HUD digits
+  (currently colour-grid blur): draw briefs.
+- 8 KB of small unknown gaps and the main code segment's data section: check for pixels.
+- Check the A button in menus on the clean build (earlier wall-clock runs lost presses; probably timing).
 
 ## For the morning
-- (nothing to record yet; practice pack not built)
+- **Record the announcer**: practice pack at `D:/n64work/waverace64/practice/` (`practice_announcer_call_and_response.wav`,
+  16 min, 155 lines, `SCRIPT.txt`). One voice: the race announcer. Takes go through the voice kit as usual.
+- Decide about the browser checks (see BLOCKED).

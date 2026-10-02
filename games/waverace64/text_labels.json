@@ -1,0 +1,970 @@
+{
+ "_doc": "Textures whose content is text (words as shown by the game), re-typeset with cleanroom.gfx.strokefont. Key = container+offset (hex). lines = text rows.",
+ "2E5FB0+13AF0": {
+  "lines": [
+   "Erase selected data record",
+   "Are you sure?",
+   "(A)-Enter (B)-Cancel"
+  ]
+ },
+ "2E5FB0+194F8": {
+  "lines": [
+   "Record not erased"
+  ]
+ },
+ "2E5FB0+1EF00": {
+  "lines": [
+   "Place N64 Controller Pak",
+   "into Controller 1"
+  ]
+ },
+ "2E5FB0+24908": {
+  "lines": [
+   "Please reinsert original",
+   "N64 Controller Pak"
+  ]
+ },
+ "2E5FB0+2A310": {
+  "lines": [
+   "Erasing selected record",
+   "Please wait..."
+  ]
+ },
+ "2E5FB0+2FD18": {
+  "lines": [
+   "Select Record"
+  ]
+ },
+ "2E5FB0+30AE8": {
+  "lines": [
+   "Table of Contents"
+  ]
+ },
+ "2E5FB0+319F8": {
+  "lines": [
+   "Game Data"
+  ]
+ },
+ "2E5FB0+322C0": {
+  "lines": [
+   "Pages"
+  ]
+ },
+ "2E5FB0+327C8": {
+  "lines": [
+   "Pages Free"
+  ]
+ },
+ "2E5FB0+33090": {
+  "lines": [
+   "Erase"
+  ]
+ },
+ "2E5FB0+334F8": {
+  "lines": [
+   "Quit"
+  ]
+ },
+ "2E5FB0+E0E8": {
+  "lines": [
+   "N64 Controller Pak Data",
+   "Select with Control Stick",
+   "(A)-Enter (B)-Cancel"
+  ]
+ },
+ "2F9BE0+1078": {
+  "lines": [
+   "Press START to begin."
+  ]
+ },
+ "2F9BE0+16E0": {
+  "lines": [
+   "A controller is not properly connected."
+  ]
+ },
+ "2F9BE0+34E8": {
+  "lines": [
+   "Re-connect it and return the POWER to ON."
+  ]
+ },
+ "2F9BE0+3D0": {
+  "lines": [
+   "TIME TRIALS"
+  ]
+ },
+ "2F9BE0+6F8": {
+  "lines": [
+   "OPTIONS"
+  ]
+ },
+ "2F9BE0+8": {
+  "lines": [
+   "CHAMPIONSHIP"
+  ]
+ },
+ "2F9BE0+930": {
+  "lines": [
+   "STUNT MODE"
+  ]
+ },
+ "2F9BE0+C58": {
+  "lines": [
+   "2P VS."
+  ]
+ },
+ "2F9BE0+DF0": {
+  "lines": [
+   "WARM UP"
+  ]
+ },
+ "320D10+10080": {
+  "lines": [
+   "To ride standing up, release the throttle,"
+  ]
+ },
+ "320D10+10FD8": {
+  "lines": [
+   "rotate the Control Stick counter-clockwise,"
+  ]
+ },
+ "320D10+12010": {
+  "lines": [
+   "then push it up and hold."
+  ]
+ },
+ "320D10+129B8": {
+  "lines": [
+   "To do a handstand, release the throttle"
+  ]
+ },
+ "320D10+138A0": {
+  "lines": [
+   "and quickly move the Control Stick down, then up and hold."
+  ]
+ },
+ "320D10+1C88": {
+  "lines": [
+   "from the Pause screen menu."
+  ]
+ },
+ "320D10+27F0": {
+  "lines": [
+   "Press up and down on the Control Stick"
+  ]
+ },
+ "320D10+3748": {
+  "lines": [
+   "to lean the rider forward and back."
+  ]
+ },
+ "320D10+8": {
+  "lines": [
+   "Warm up time - Follow that dolphin!"
+  ]
+ },
+ "320D10+E10": {
+  "lines": [
+   "To start racing, select \"Start the Race\""
+  ]
+ },
+ "320D10+F5F8": {
+  "lines": [
+   "then push it down and hold."
+  ]
+ },
+ "32B8E0+BFA8": {
+  "lines": [
+   "PRESS START"
+  ]
+ },
+ "32B8E0+C320": {
+  "lines": [
+   "WATERCRAFT SELECT"
+  ]
+ },
+ "32B8E0+CF88": {
+  "lines": [
+   "HANDLING"
+  ]
+ },
+ "32B8E0+D210": {
+  "lines": [
+   "ENGINE"
+  ]
+ },
+ "32B8E0+D3F8": {
+  "lines": [
+   "GRIP"
+  ]
+ },
+ "32B8E0+D540": {
+  "lines": [
+   "LIGHT"
+  ]
+ },
+ "32B8E0+D648": {
+  "lines": [
+   "HEAVY"
+  ]
+ },
+ "32B8E0+D790": {
+  "lines": [
+   "DASH"
+  ]
+ },
+ "32B8E0+D898": {
+  "lines": [
+   "TOP END"
+  ]
+ },
+ "32B8E0+DA20": {
+  "lines": [
+   "LOOSE"
+  ]
+ },
+ "32B8E0+DB68": {
+  "lines": [
+   "TIGHT"
+  ]
+ },
+ "32B8E0+DC70": {
+  "lines": [
+   "WATERCRAFT SETTINGS"
+  ]
+ },
+ "32B8E0+E078": {
+  "lines": [
+   "CUSTOM"
+  ]
+ },
+ "330990+5C50": {
+  "lines": [
+   "COURSE SELECT"
+  ]
+ },
+ "330990+69D8": {
+  "lines": [
+   "BEST SCORE"
+  ]
+ },
+ "330990+6BE0": {
+  "lines": [
+   "HANDICAP"
+  ]
+ },
+ "333340+1A0": {
+  "lines": [
+   "STUNTS"
+  ]
+ },
+ "333340+3D8": {
+  "lines": [
+   "TOTAL"
+  ]
+ },
+ "333340+8": {
+  "lines": [
+   "RINGS"
+  ]
+ },
+ "333340+980": {
+  "lines": [
+   "CURRENT SCORE"
+  ]
+ },
+ "333960+8": {
+  "lines": [
+   "2P VS. RESULTS"
+  ]
+ },
+ "333E60+11E0": {
+  "lines": [
+   "TO ADVANCE",
+   "2ND OR BETTER"
+  ]
+ },
+ "333E60+1768": {
+  "lines": [
+   "TO ADVANCE",
+   "3RD OR BETTER"
+  ]
+ },
+ "333E60+1CF0": {
+  "lines": [
+   "TO ADVANCE",
+   "4TH OR BETTER"
+  ]
+ },
+ "333E60+2278": {
+  "lines": [
+   "TO ADVANCE",
+   "-"
+  ]
+ },
+ "333E60+2800": {
+  "lines": [
+   "CHAMPIONSHIP"
+  ]
+ },
+ "333E60+3468": {
+  "lines": [
+   "NORMAL 6 ROUNDS"
+  ]
+ },
+ "333E60+4430": {
+  "lines": [
+   "HARD 7 ROUNDS"
+  ]
+ },
+ "333E60+51B8": {
+  "lines": [
+   "EXPERT 8 ROUNDS"
+  ]
+ },
+ "333E60+60F0": {
+  "lines": [
+   "REVERSE 8 ROUNDS"
+  ]
+ },
+ "333E60+C58": {
+  "lines": [
+   "TO ADVANCE",
+   "1ST PLACE"
+  ]
+ },
+ "336790+15C0": {
+  "lines": [
+   "SAVE AND LOAD"
+  ]
+ },
+ "336790+19D8": {
+  "lines": [
+   "OPTIONS"
+  ]
+ },
+ "336790+420": {
+  "lines": [
+   "VIEW RECORDS"
+  ]
+ },
+ "336790+D90": {
+  "lines": [
+   "AUDIO"
+  ]
+ },
+ "336790+F28": {
+  "lines": [
+   "ERASE COURSE RECORDS"
+  ]
+ },
+ "337780+1A70": {
+  "lines": [
+   "SPACE"
+  ]
+ },
+ "337780+1BB8": {
+  "lines": [
+   "DEFAULT"
+  ]
+ },
+ "337780+BB0": {
+  "lines": [
+   "CHANGE NAMES"
+  ]
+ },
+ "338470+1AC0": {
+  "lines": [
+   "TIME RANKS - TOP 3"
+  ]
+ },
+ "338470+2748": {
+  "lines": [
+   "REVERSE - TOP TIMES"
+  ]
+ },
+ "338470+CB8": {
+  "lines": [
+   "SCORE RANKS - TOP 3"
+  ]
+ },
+ "3396A0+1490": {
+  "lines": [
+   "NUMBER OF LAPS"
+  ]
+ },
+ "3396A0+18F8": {
+  "lines": [
+   "WARNING:"
+  ]
+ },
+ "3396A0+1B80": {
+  "lines": [
+   "RECORDS WILL NOT BE SAVED"
+  ]
+ },
+ "3396A0+2308": {
+  "lines": [
+   "CHANGE CONDITIONS"
+  ]
+ },
+ "3396A0+2E0": {
+  "lines": [
+   "WAVE CONDITIONS"
+  ]
+ },
+ "3396A0+798": {
+  "lines": [
+   "DEFAULT"
+  ]
+ },
+ "3396A0+8": {
+  "lines": [
+   "DEFAULTS"
+  ]
+ },
+ "3396A0+A20": {
+  "lines": [
+   "CALM"
+  ]
+ },
+ "3396A0+BB8": {
+  "lines": [
+   "WILD"
+  ]
+ },
+ "3396A0+D50": {
+  "lines": [
+   "RANDOM"
+  ]
+ },
+ "3396A0+F88": {
+  "lines": [
+   "NUMBER OF MISSES"
+  ]
+ },
+ "33AD40+1118": {
+  "lines": [
+   "AUDIO"
+  ]
+ },
+ "33AD40+240": {
+  "lines": [
+   "MONO"
+  ]
+ },
+ "33AD40+3D8": {
+  "lines": [
+   "HEADPHONE"
+  ]
+ },
+ "33AD40+700": {
+  "lines": [
+   "MUSIC"
+  ]
+ },
+ "33AD40+8": {
+  "lines": [
+   "STEREO"
+  ]
+ },
+ "33AD40+898": {
+  "lines": [
+   "LISTEN TO MUSIC"
+  ]
+ },
+ "33AD40+D00": {
+  "lines": [
+   "AUDIO SETTINGS"
+  ]
+ },
+ "33B7F0+8": {
+  "lines": [
+   "ERASE COURSE RECORDS"
+  ]
+ },
+ "33BEB0+2DF8": {
+  "lines": [
+   "COPY"
+  ]
+ },
+ "33BEB0+2F90": {
+  "lines": [
+   "ERASE"
+  ]
+ },
+ "33BEB0+3178": {
+  "lines": [
+   "WATERCRAFT"
+  ]
+ },
+ "33BEB0+34A0": {
+  "lines": [
+   "TIMES & SCORES"
+  ]
+ },
+ "33BEB0+3818": {
+  "lines": [
+   "SAVE AND LOAD"
+  ]
+ },
+ "33BEB0+45A0": {
+  "lines": [
+   "GAME PAK"
+  ]
+ },
+ "33BEB0+4768": {
+  "lines": [
+   "CONTROLLER PAK"
+  ]
+ },
+ "33BEB0+4A70": {
+  "lines": [
+   "COPYING"
+  ]
+ },
+ "33BEB0+5078": {
+  "lines": [
+   "CANNOT READ",
+   "CONTROLLER PAK DATA"
+  ]
+ },
+ "33BEB0+6AC0": {
+  "lines": [
+   "ERASING"
+  ]
+ },
+ "33BEB0+7048": {
+  "lines": [
+   "UNIFY GAME PAK",
+   "AND CONTROLLER PAK DATA"
+  ]
+ },
+ "33BEB0+8E50": {
+  "lines": [
+   "INSERT CONTROLLER PAK",
+   "IN CONTROLLER 1"
+  ]
+ },
+ "33BEB0+AA78": {
+  "lines": [
+   "INSUFFICIENT BLANK PAGES",
+   "IN CONTROLLER PAK"
+  ]
+ },
+ "33BEB0+C880": {
+  "lines": [
+   "UNABLE TO FIND",
+   "WAVE RACE 64 DATA"
+  ]
+ },
+ "33BEB0+DF08": {
+  "lines": [
+   "UNABLE TO COPY"
+  ]
+ },
+ "33BEB0+EA90": {
+  "lines": [
+   "UNABLE TO ERASE"
+  ]
+ },
+ "33BEB0+F698": {
+  "lines": [
+   "FOR 1P"
+  ]
+ },
+ "340F20+1280": {
+  "lines": [
+   "4TH PLACE"
+  ]
+ },
+ "340F20+2DC8": {
+  "lines": [
+   "NEW"
+  ]
+ },
+ "340F20+A98": {
+  "lines": [
+   "WINNER"
+  ]
+ },
+ "340F20+CD0": {
+  "lines": [
+   "2ND PLACE"
+  ]
+ },
+ "340F20+FA8": {
+  "lines": [
+   "3RD PLACE"
+  ]
+ },
+ "345D70+8": {
+  "lines": [
+   "INITIALS ENTRY"
+  ]
+ },
+ "F6090+44F60": {
+  "lines": [
+   "POWER UP!"
+  ]
+ },
+ "F6090+45968": {
+  "lines": [
+   "POWER DOWN!"
+  ]
+ },
+ "F6090+46910": {
+  "lines": [
+   "POWER"
+  ]
+ },
+ "F6090+5D680": {
+  "lines": [
+   "ROUND 1"
+  ]
+ },
+ "F6090+5D8F0": {
+  "lines": [
+   "ROUND 2"
+  ]
+ },
+ "F6090+5DB60": {
+  "lines": [
+   "ROUND 3"
+  ]
+ },
+ "F6090+5DDD0": {
+  "lines": [
+   "ROUND 4"
+  ]
+ },
+ "F6090+5E040": {
+  "lines": [
+   "ROUND 5"
+  ]
+ },
+ "F6090+5E2B0": {
+  "lines": [
+   "ROUND 6"
+  ]
+ },
+ "F6090+5E520": {
+  "lines": [
+   "ROUND 7"
+  ]
+ },
+ "F6090+5E790": {
+  "lines": [
+   "ROUND 8"
+  ]
+ },
+ "F6090+5EA38": {
+  "lines": [
+   "FINAL ROUND"
+  ]
+ },
+ "F6090+5EE08": {
+  "lines": [
+   "DOLPHIN PARK"
+  ]
+ },
+ "F6090+5F130": {
+  "lines": [
+   "SUNNY BEACH"
+  ]
+ },
+ "F6090+5F458": {
+  "lines": [
+   "SUNSET BAY"
+  ]
+ },
+ "F6090+5F730": {
+  "lines": [
+   "DRAKE LAKE"
+  ]
+ },
+ "F6090+5FA08": {
+  "lines": [
+   "MARINE FORTRESS"
+  ]
+ },
+ "F6090+5FDD0": {
+  "lines": [
+   "PORT BLUE"
+  ]
+ },
+ "F6090+60058": {
+  "lines": [
+   "TWILIGHT CITY"
+  ]
+ },
+ "F6090+606F8": {
+  "lines": [
+   "SOUTHERN ISLAND"
+  ]
+ },
+ "F6090+60AC0": {
+  "lines": [
+   "NORMAL"
+  ]
+ },
+ "F6090+60CF8": {
+  "lines": [
+   "HARD"
+  ]
+ },
+ "F6090+60E90": {
+  "lines": [
+   "EXPERT"
+  ]
+ },
+ "F6090+610C8": {
+  "lines": [
+   "REVERSE"
+  ]
+ },
+ "F6090+61350": {
+  "lines": [
+   "START THE RACE"
+  ]
+ },
+ "F6090+617B8": {
+  "lines": [
+   "TIME"
+  ]
+ },
+ "F6090+61900": {
+  "lines": [
+   "SCORE"
+  ]
+ },
+ "F6090+61AE8": {
+  "lines": [
+   "END"
+  ]
+ },
+ "F6090+61C30": {
+  "lines": [
+   "RANK"
+  ]
+ },
+ "F6090+61F60": {
+  "lines": [
+   "RIDER"
+  ]
+ },
+ "F6090+620F8": {
+  "lines": [
+   "EXECUTE"
+  ]
+ },
+ "F6090+62380": {
+  "lines": [
+   "CANCEL"
+  ]
+ },
+ "F6090+625B8": {
+  "lines": [
+   "POINTS NEEDED TO ADVANCE"
+  ]
+ },
+ "F6090+62BB0": {
+  "lines": [
+   "YOUR POINTS"
+  ]
+ },
+ "F6090+62E88": {
+  "lines": [
+   "CONTINUE"
+  ]
+ },
+ "F6090+63110": {
+  "lines": [
+   "QUIT GAME"
+  ]
+ },
+ "F6090+633E8": {
+  "lines": [
+   "RETIRE"
+  ]
+ },
+ "F6090+635D0": {
+  "lines": [
+   "RESTART CIRCUIT"
+  ]
+ },
+ "F6090+63A38": {
+  "lines": [
+   "RESTART"
+  ]
+ },
+ "F6090+63CC0": {
+  "lines": [
+   "WATERCRAFT SELECT"
+  ]
+ },
+ "F6090+64268": {
+  "lines": [
+   "COURSE SELECT"
+  ]
+ },
+ "F6090+64680": {
+  "lines": [
+   "POINTS"
+  ]
+ },
+ "F6090+64BE0": {
+  "lines": [
+   "1ST"
+  ]
+ },
+ "F6090+650F0": {
+  "lines": [
+   "3RD OR BETTER"
+  ]
+ },
+ "F6090+65508": {
+  "lines": [
+   "4TH OR BETTER"
+  ]
+ },
+ "F6090+65928": {
+  "lines": [
+   "RETRY"
+  ]
+ },
+ "F6090+65B10": {
+  "lines": [
+   "ON"
+  ]
+ },
+ "F6090+65C08": {
+  "lines": [
+   "OFF"
+  ]
+ },
+ "F6090+65D00": {
+  "lines": [
+   "DOLPHIN PARK"
+  ]
+ },
+ "F6090+668D8": {
+  "lines": [
+   "SUNNY BEACH"
+  ]
+ },
+ "F6090+674B0": {
+  "lines": [
+   "SUNSET BAY"
+  ]
+ },
+ "F6090+67ED8": {
+  "lines": [
+   "MARINE FORTRESS"
+  ]
+ },
+ "F6090+68BD0": {
+  "lines": [
+   "DRAKE LAKE"
+  ]
+ },
+ "F6090+695F8": {
+  "lines": [
+   "PORT BLUE"
+  ]
+ },
+ "F6090+69F00": {
+  "lines": [
+   "TWILIGHT CITY"
+  ]
+ },
+ "F6090+6AAD8": {
+  "lines": [
+   "SOUTHERN ISLAND"
+  ]
+ },
+ "F6090+6B620": {
+  "lines": [
+   "GLACIER COAST"
+  ]
+ },
+ "F6090+6C318": {
+  "lines": [
+   "RACE RESULTS"
+  ]
+ },
+ "F6090+6CF80": {
+  "lines": [
+   "CIRCUIT RANKING"
+  ]
+ },
+ "F6090+6DD98": {
+  "lines": [
+   "A ENTER"
+  ]
+ },
+ "F6090+6DF80": {
+  "lines": [
+   "B GO BACK"
+  ]
+ },
+ "F6090+6E208": {
+  "lines": [
+   "BEST LAP"
+  ]
+ },
+ "F6090+6E390": {
+  "lines": [
+   "BEST TIME"
+  ]
+ },
+ "F6090+6E558": {
+  "lines": [
+   "CURRENT TIME"
+  ]
+ },
+ "F6090+6E7E0": {
+  "lines": [
+   "NORMAL"
+  ]
+ },
+ "F6090+6E968": {
+  "lines": [
+   "HARD"
+  ]
+ },
+ "F6090+6EA70": {
+  "lines": [
+   "EXPERT"
+  ]
+ },
+ "F6090+6EBF8": {
+  "lines": [
+   "REVERSE"
+  ]
+ },
+ "F6090+6ED80": {
+  "lines": [
+   "POINTS"
+  ]
+ },
+ "F6090+61DC8": {
+  "lines": [
+   "LEVEL"
+  ]
+ },
+ "F6090+60380": {
+  "lines": [
+   "GLACIER COAST"
+  ]
+ },
+ "F6090+64868": {
+  "lines": [
+   "TO ADVANCE"
+  ]
+ },
+ "F6090+64CD8": {
+  "lines": [
+   "2ND OR BETTER"
+  ]
+ }
+}
