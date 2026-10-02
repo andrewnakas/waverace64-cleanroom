@@ -47,6 +47,10 @@ Boots, menus readable, championship race starts (headless walk `D:/n64work/waver
   (`layout.notimage`, applied to every source; an image followed by a display list keeps its image half). Spec: 1998 textures.
   Walk `shots/v4/sheet.png` (title, menus, watercraft select; timed out before the race, emulator slow), taint 0 failing. Pushed to Pages.
 
+- 13:35 Watercraft select fixed (labels readable, four craft thumbnails shown): `layout.resolve_overlaps` drops records that
+  share bytes with another (71 wrong-container trace records in 8 containers). Spec: 1943 textures, 133 palettes. Taint 0 failing,
+  walk `shots/v5/sheet.png`. Pushed to Pages.
+
 ## Works
 - ROM map: 143 containers (129 MIO0 + raw), 84 scene load tables, segment map.
 - Texture spec: 2042+ textures and ~150 palettes (static display lists + run-time trace + frame arrays + guessed
@@ -59,7 +63,7 @@ Boots, menus readable, championship race starts (headless walk `D:/n64work/waver
 - Published ROM: title, menus, watercraft select in headless Edge; the build before it also ran a Dolphin Park race.
 
 ## Known rough spots
-- Title logo and the watercraft-select name bar / stat strips are colour-grid blur or noise, not drawn yet.
+- Title logo and the Kawasaki banner are colour-grid blur; the rider name under the select-screen preview is unreadable; stat bars are missing.
 - `29F7E0+0`, `2A2150+0` are several images guessed as one tall image (regenerated, but as one blur).
 - The headless emulator sometimes runs at a few frames per second (machine load); one check hung and had to be stopped.
 
@@ -68,9 +72,6 @@ Boots, menus readable, championship race starts (headless walk `D:/n64work/waver
   "TM" look the same as retail and are not in `text_labels.json`. Offline scans of the code/data segments found no text image.
   Needs a memory dump of the title screen to see where those textures come from. Also `F6090+13BA8` (32x32 16-bit oval, 2 KB)
   is a real picture missing from the spec. The taint scan cannot see pictures the spec does not know.
-- Watercraft select: labels (WATERCRAFT SETTINGS, CUSTOM, TOP END, LOOSE, TIGHT) are noise and the four craft thumbnails are
-  missing because three bogus CI 32x32 trace records (`32B8E0+D940/DD40/E140`) overlap the label images. Overlapping records
-  need a resolver.
 - Headless Edge failed once with "out of memory" (PC commit space low); checks wait when that happens.
 
 ## Next

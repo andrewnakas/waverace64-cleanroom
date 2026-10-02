@@ -131,6 +131,7 @@ def textures(cs, sc, use_trace=True):
                 tex[key] = dict(r, src="trace")
         tex = {k: r for k, r in tex.items() if not (r["kind"] == "tlut" and r["count"] < 16 and r.get("src") == "trace")
                and k[1] + r["n"] <= len(cs[k[0]]["data"])}
+        resolve_overlaps(tex)
         extend(cs, sc, tex)
         guessed(cs, sc, tex)
         for k in [k for k, r in tex.items() if r["kind"] == "tex" and r.get("src") in ("guess", "extend")
@@ -181,6 +182,38 @@ def vertices(b):
     a = np.frombuffer(b[:n * 16], np.uint8).reshape(n, 16)
     xyz = np.frombuffer(b[:n * 16], ">i2").reshape(n, 8)[:, :3]
     return float(((a[:, 6] == 0) & (a[:, 7] == 0) & (np.abs(xyz).sum(1) > 0)).mean())
+
+
+def resolve_overlaps(tex):
+    """Two records cannot share bytes. The run-time trace sometimes maps a load to the wrong container (several
+    containers answer to the same segment address): such records overlap real ones (labels on the watercraft
+    screen became noise). Drop, one at a time, the worst record: trace before static, most overlaps, palettes / CI first."""
+    import collections
+    dropped = 0
+    by = collections.defaultdict(list)
+    for (c, o), r in tex.items():
+        by[c].append(o)
+    for c, offs in by.items():
+        while True:
+            offs.sort()
+            cnt = collections.Counter()
+            for i, a in enumerate(offs):
+                e = a + tex[(c, a)]["n"]
+                for b in offs[i + 1:]:
+                    if b >= e:
+                        break
+                    cnt[a] += 1
+                    cnt[b] += 1
+            if not cnt:
+                break
+            def rank(o):
+                r = tex[(c, o)]
+                return (r.get("src") == "trace", cnt[o], r["kind"] == "tlut" or r.get("fmt") == 2, o)
+            v = max(cnt, key=rank)
+            del tex[(c, v)]
+            offs.remove(v)
+            dropped += 1
+    return dropped
 
 
 def notimage(b, vtx=True):
