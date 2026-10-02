@@ -51,6 +51,14 @@ Boots, menus readable, championship race starts (headless walk `D:/n64work/waver
   share bytes with another (71 wrong-container trace records in 8 containers). Spec: 1943 textures, 133 palettes. Taint 0 failing,
   walk `shots/v5/sheet.png`. Pushed to Pages.
 
+- 13:50 Title text question closed: "(c) 1996 Nintendo", the trademark line and "TM" are spec textures (`2F9BE0+16E0`, `+34E8`...)
+  regenerated from their kept 2-bit alpha outline (in scope), not leftover retail pixels. Found with a title-screen memory dump.
+- 14:10 **Strip pictures**: 6 pictures stored as stacks of thin strips (title logo 256x104, small logo 84x28, craft thumbnails,
+  3 bars) kept a grid per strip = nearly every row. They now keep one 16x16 (or 4x4) grid per whole picture (`extract_spec.strip_pictures`).
+- 14:20 Title logo, maker banner and small corner logo drawn by us (`drawn._title_logo`, `_badge`); preview `shots/logo_clean.png`.
+  Leftover pictures added by override: `F6090+13BA8` (32x32) and three flat fills. Spec 1947 textures. Taint 0 failing of 5511.
+  Walk `shots/v6/sheet.png`: title, menus, watercraft select, Dolphin Park warm-up with HUD. Pushed to Pages.
+
 ## Works
 - ROM map: 143 containers (129 MIO0 + raw), 84 scene load tables, segment map.
 - Texture spec: 2042+ textures and ~150 palettes (static display lists + run-time trace + frame arrays + guessed
@@ -63,21 +71,14 @@ Boots, menus readable, championship race starts (headless walk `D:/n64work/waver
 - Published ROM: title, menus, watercraft select in headless Edge; the build before it also ran a Dolphin Park race.
 
 ## Known rough spots
-- Title logo and the Kawasaki banner are colour-grid blur; the rider name under the select-screen preview is unreadable; stat bars are missing.
+- The rider name under the select-screen preview is unreadable; stat bars on that screen are missing.
+- Headless Edge failed once with "out of memory" (PC commit space low); checks wait when that happens.
 - `29F7E0+0`, `2A2150+0` are several images guessed as one tall image (regenerated, but as one blur).
 - The headless emulator sometimes runs at a few frames per second (machine load); one check hung and had to be stopped.
 
-## Open questions (found 13:30, not fixed yet)
-- **Possible retail pixels still in the published ROM**: on the title screen "(c) 1996 Nintendo", the Kawasaki trademark line and
-  "TM" look the same as retail and are not in `text_labels.json`. Offline scans of the code/data segments found no text image.
-  Needs a memory dump of the title screen to see where those textures come from. Also `F6090+13BA8` (32x32 16-bit oval, 2 KB)
-  is a real picture missing from the spec. The taint scan cannot see pictures the spec does not know.
-- Headless Edge failed once with "out of memory" (PC commit space low); checks wait when that happens.
-
 ## Next
 - Trace walks (championship, time trials, stunt, 2P, options, results) to confirm guessed sizes and find CI palettes.
-- Pictures still colour-grid blur: title logo, rider portraits, watercraft icons, HUD speed digits / small icons: draw briefs
-  (needs the trace to know which texture is which).
+- Pictures still colour-grid blur: rider portraits, HUD speed digits / small icons, course maps: draw briefs.
 - 8 KB of small unknown gaps (< 64 bytes each or not after a marker): check for pixels. The code segments' data
   was scanned (23:05, byte statistics in 2 KB windows): no pixel-like region found.
 

@@ -102,11 +102,11 @@ def glyphs(t, lab):
 
 # Pictures stored as stacks of strips, drawn by us as one image and cut into the strips.
 # container -> (first offset, strip bytes, strips, painter)
-def _title_logo(w, h):
+def _badge(w, h):
     """Our own badge: gold oval, dark rim, a big red 64 behind WAVE RACE in sea-blue letters with a navy edge."""
     from scipy.ndimage import binary_dilation
     yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
-    r = ((xx - w / 2 + 0.5) / (w / 2 - 3)) ** 2 + ((yy - h / 2 + 0.5) / (h / 2 - 3)) ** 2
+    r = ((xx - w / 2 + 0.5) / (w / 2 - 2)) ** 2 + ((yy - h / 2 + 0.5) / (h / 2 - 2)) ** 2
     img = np.zeros((h, w, 4), np.float32)
     inside, rim = r <= 1.0, (r <= 1.0) & (r > 0.86)
     gold = np.stack([205 - 40 * yy / h, 165 - 35 * yy / h, 95 - 20 * yy / h], -1) + (np.sin(yy / 2.3) * 6)[..., None]
@@ -120,29 +120,36 @@ def _title_logo(w, h):
         x = (w - line.shape[1]) // 2
         m[y:y + th, x:x + line.shape[1]] = line[:h - y]
         if edge is not None:
-            e = binary_dilation(m > 0.3, iterations=2)
+            e = binary_dilation(m > 0.3, iterations=2 if h > 50 else 1)
             img[e, :3] = edge
             img[e, 3] = 255
         k = np.clip(m, 0, 1)[..., None]
         img[..., :3] = img[..., :3] * (1 - k) + np.array(colour, np.float32) * k
         img[..., 3] = np.maximum(img[..., 3], k[..., 0] * 255)
 
-    put("64", int(h * 0.80), h * 0.11, int(h * 0.10), (215, 40, 30), maxw=int(w * 0.40))
-    put("WAVE RACE", int(h * 0.36), h * 0.062, int(h * 0.32), (70, 215, 235), edge=(20, 40, 110), maxw=int(w * 0.84))
-    return np.clip(img, 0, 255).astype(np.uint8)
+    put("64", int(h * 0.80), max(1.5, h * 0.11), int(h * 0.10), (215, 40, 30), maxw=int(w * 0.40))
+    put("WAVE RACE", int(h * 0.36), max(1.2, h * 0.062), int(h * 0.32), (70, 215, 235), edge=(20, 40, 110), maxw=int(w * 0.84))
+    return np.clip(img, 0, 255)
 
 
-def _maker_banner(w, h):
+def _title_logo(w, h):
+    """Title picture: the badge on top, the maker's banner (re-typeset) under it."""
+    bh = int(h * 0.80)
     img = np.zeros((h, w, 4), np.float32)
-    img[..., :3] = (38, 36, 150)
-    img[..., 3] = 255
-    m = text_mask(["KAWASAKI JET SKI"], w * 2, h // 2)                 # shown twice as wide and half as tall
-    m = np.repeat((m[:, 0::2] + m[:, 1::2]) / 2, 2, axis=0)[:h, :w, None]
-    img[..., :3] = img[..., :3] * (1 - m) + 255 * m
+    img[:bh] = _badge(w, bh)
+    y0, y1, x0, x1 = int(h * 0.83), int(h * 0.98), int(w * 0.18), int(w * 0.84)
+    img[y0:y1, x0:x1, :3] = (38, 36, 150)
+    img[y0:y1, x0:x1, 3] = 255
+    m = text_mask(["KAWASAKI JET SKI"], x1 - x0, y1 - y0)[..., None]
+    img[y0:y1, x0:x1, :3] = img[y0:y1, x0:x1, :3] * (1 - m) + 255 * m
     return img.astype(np.uint8)
 
 
-STRIPS = {0x2F9BE0: [(0x6220, 0x1000, 28, _title_logo), (0x20228, 0x540, 7, _maker_banner)]}
+def _small_logo(w, h):
+    return _badge(w, h).astype(np.uint8)
+
+
+STRIPS = {0x2F9BE0: [(0x6220, 0x1000, 26, _title_logo), (0x20228, 0x540, 7, _small_logo)]}
 _PICS = {}
 
 
