@@ -56,7 +56,8 @@ retail pixels (textures the game loads from code). Publishing waits for those an
 - Trace walks (championship, time trials, stunt, 2P, options, results) to confirm guessed sizes and find CI palettes.
 - Pictures still colour-grid blur: title logo, rider portraits, watercraft icons, HUD speed digits / small icons: draw briefs
   (needs the trace to know which texture is which).
-- 8 KB of small unknown gaps and the main code segment's data section: check for pixels.
+- 8 KB of small unknown gaps (< 64 bytes each or not after a marker): check for pixels. The code segments' data
+  was scanned (23:05, byte statistics in 2 KB windows): no pixel-like region found.
 - Check the A button in menus on the clean build (earlier wall-clock runs lost presses; probably timing).
 
 ## For the morning
