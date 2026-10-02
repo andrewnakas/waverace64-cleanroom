@@ -966,5 +966,56 @@
   "lines": [
    "2ND OR BETTER"
   ]
+ },
+ "30BC50+8": {
+  "lines": [
+   "FINISH!"
+  ],
+  "style": "banner"
+ },
+ "30EC20+8": {
+  "lines": [
+   "LOST"
+  ],
+  "style": "banner"
+ },
+ "30EC20+3010": {
+  "lines": [
+   "WON"
+  ],
+  "style": "banner"
+ },
+ "30EC20+6018": {
+  "lines": [
+   "DRAW"
+  ],
+  "style": "banner"
+ },
+ "313A90+8": {
+  "lines": [
+   "RETIRE"
+  ],
+  "style": "banner"
+ },
+ "317270+8": {
+  "lines": [
+   "1st",
+   "2nd",
+   "3rd",
+   "4th"
+  ],
+  "style": "banner"
+ },
+ "31CF40+8": {
+  "lines": [
+   "NEW RECORD"
+  ],
+  "style": "banner"
+ },
+ "327E90+8": {
+  "lines": [
+   "TIME UP"
+  ],
+  "style": "banner"
  }
 }
