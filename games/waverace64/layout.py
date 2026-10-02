@@ -136,6 +136,13 @@ def textures(cs, sc, use_trace=True):
         for k in [k for k, r in tex.items() if r["kind"] == "tex" and r.get("src") in ("guess", "extend")
                   and structured(cs[k[0]]["data"][k[1]:k[1] + r["n"]])]:
             del tex[k]
+        for k in [k for k, r in tex.items() if r["kind"] == "tex"
+                  and notimage(cs[k[0]]["data"][k[1]:k[1] + r["n"]], r.get("src") in ("trace", "guess", "extend"))]:
+            # any source: the trace and the static scan also name a few display lists / vertex runs
+            r = tex.pop(k)
+            half = r["n"] // 2                           # an image followed by a display list: keep the image half
+            if r["h"] % 2 == 0 and half >= 64 and not notimage(cs[k[0]]["data"][k[1]:k[1] + half]) and notimage(cs[k[0]]["data"][k[1] + half:k[1] + r["n"]]):
+                tex[k] = dict(r, h=r["h"] // 2, n=half)
     return tex, unres, multi
 
 
@@ -174,6 +181,26 @@ def vertices(b):
     a = np.frombuffer(b[:n * 16], np.uint8).reshape(n, 16)
     xyz = np.frombuffer(b[:n * 16], ">i2").reshape(n, 8)[:, :3]
     return float(((a[:, 6] == 0) & (a[:, 7] == 0) & (np.abs(xyz).sum(1) > 0)).mean())
+
+
+def notimage(b, vtx=True):
+    """Strict test for any record: mostly well-formed display-list commands, or lit vertices (flag 0, alpha 255)."""
+    import numpy as np
+    w = np.frombuffer(b[:len(b) // 8 * 8], ">u4").reshape(-1, 2)
+    if len(w) >= 4:
+        op, lo = w[:, 0] >> 24, w[:, 0] & 0xFFFFFF
+        seg = ((w[:, 1] >> 24) < 16) & ((w[:, 1] & 0xFFFFFF) < 0x200000)
+        cmd = ((op == 0xBF) & (lo == 0) & ((w[:, 1] >> 24) == 0)) | ((op == 0x04) & seg) | ((op == 0x06) & (lo == 0) & seg)             | ((op == 0xFD) & ((lo & 0xFFFF) == 0) & seg) | (np.isin(op, (0xE6, 0xE7, 0xE8, 0xB8)) & (lo == 0) & (w[:, 1] == 0))             | np.isin(op, (0xF5, 0xF2, 0xF3, 0xB6, 0xB7, 0xB9, 0xBA, 0xFC, 0xFB, 0xB1))
+        cmd &= w[:, 0] != w[:, 1]                       # flat pixel runs (04040404 04040404) are not commands
+        hard = cmd & np.isin(op, (0xBF, 0x04, 0x06, 0xFD, 0xB8, 0xE6, 0xE7, 0xE8))
+        if cmd.mean() >= 0.5 and hard.sum() >= 2:
+            return True
+    n = len(b) // 16
+    if n >= 4 and vtx:
+        a = np.frombuffer(b[:n * 16], np.uint8).reshape(n, 16)
+        if ((a[:, 6] == 0) & (a[:, 7] == 0) & (a[:, 15] == 255) & (a[:, :6].max(1) > 0)).mean() >= 0.7:
+            return True
+    return False
 
 
 def guessed(cs, sc, tex):

@@ -43,6 +43,10 @@ Boots, menus readable, championship race starts (headless walk `D:/n64work/waver
 - 12:15 **Grey shards over every scene fixed**: rider / craft model containers (351260..35FCB0) were guessed as tall images
   (vertex data). `layout.vertices` rejects guesses that are >= 85 % vertex-like records. Spec: 2011 textures, 149 palettes.
 
+- 12:45 Dark polygons in menu backdrops fixed: 13 more records (trace / static scan) were display lists or lit vertices
+  (`layout.notimage`, applied to every source; an image followed by a display list keeps its image half). Spec: 1998 textures.
+  Walk `shots/v4/sheet.png` (title, menus, watercraft select; timed out before the race, emulator slow), taint 0 failing. Pushed to Pages.
+
 ## Works
 - ROM map: 143 containers (129 MIO0 + raw), 84 scene load tables, segment map.
 - Texture spec: 2042+ textures and ~150 palettes (static display lists + run-time trace + frame arrays + guessed
@@ -55,8 +59,6 @@ Boots, menus readable, championship race starts (headless walk `D:/n64work/waver
 - Earlier clean ROM booted to title, menus and a race in headless Edge (EmulatorJS). The current one is unverified.
 
 ## Known rough spots
-- Some menu background scenes still show large black / dark polygons (title and difficulty menu backdrops); races look right.
-  Probably one more non-image record (trace or frame-array source) over vertex data.
 - Title logo and the watercraft-select name bar / stat strips are colour-grid blur or noise, not drawn yet.
 - `29F7E0+0`, `2A2150+0` are several images guessed as one tall image (regenerated, but as one blur).
 - The headless emulator sometimes runs at a few frames per second (machine load); one check hung and had to be stopped.
