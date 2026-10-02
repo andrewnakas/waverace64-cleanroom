@@ -55,13 +55,23 @@ Boots, menus readable, championship race starts (headless walk `D:/n64work/waver
   1st-4th, NEW RECORD, TIME UP) and the HUD font strip (0-9 A-Z) redrawn. Previews: `D:/n64work/waverace64/shots/labels_clean.png`,
   `banners.png`, `digits_clean.png` (rendered from our generator, not from the game).
 - Audio: all 309 samples resynthesised from outlines, own codebooks and loop states; 155 announcer lines = TTS placeholders.
-- **Taint: 0 failing of 5717 streams** (current clean ROM, 22:10).
-- Earlier clean ROM booted to title, menus and a race in headless Edge (EmulatorJS). The current one is unverified.
+- **Taint: 0 failing** on the published clean ROM (2026-10-02 12:45).
+- Published ROM: title, menus, watercraft select in headless Edge; the build before it also ran a Dolphin Park race.
 
 ## Known rough spots
 - Title logo and the watercraft-select name bar / stat strips are colour-grid blur or noise, not drawn yet.
 - `29F7E0+0`, `2A2150+0` are several images guessed as one tall image (regenerated, but as one blur).
 - The headless emulator sometimes runs at a few frames per second (machine load); one check hung and had to be stopped.
+
+## Open questions (found 13:30, not fixed yet)
+- **Possible retail pixels still in the published ROM**: on the title screen "(c) 1996 Nintendo", the Kawasaki trademark line and
+  "TM" look the same as retail and are not in `text_labels.json`. Offline scans of the code/data segments found no text image.
+  Needs a memory dump of the title screen to see where those textures come from. Also `F6090+13BA8` (32x32 16-bit oval, 2 KB)
+  is a real picture missing from the spec. The taint scan cannot see pictures the spec does not know.
+- Watercraft select: labels (WATERCRAFT SETTINGS, CUSTOM, TOP END, LOOSE, TIGHT) are noise and the four craft thumbnails are
+  missing because three bogus CI 32x32 trace records (`32B8E0+D940/DD40/E140`) overlap the label images. Overlapping records
+  need a resolver.
+- Headless Edge failed once with "out of memory" (PC commit space low); checks wait when that happens.
 
 ## Next
 - Trace walks (championship, time trials, stunt, 2P, options, results) to confirm guessed sizes and find CI palettes.
@@ -69,7 +79,6 @@ Boots, menus readable, championship race starts (headless walk `D:/n64work/waver
   (needs the trace to know which texture is which).
 - 8 KB of small unknown gaps (< 64 bytes each or not after a marker): check for pixels. The code segments' data
   was scanned (23:05, byte statistics in 2 KB windows): no pixel-like region found.
-- Check the A button in menus on the clean build (earlier wall-clock runs lost presses; probably timing).
 
 ## For the morning
 - **Record the announcer**: practice pack at `D:/n64work/waverace64/practice/` (`practice_announcer_call_and_response.wav`,
