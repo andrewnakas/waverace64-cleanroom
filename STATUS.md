@@ -59,6 +59,10 @@ Boots, menus readable, championship race starts (headless walk `D:/n64work/waver
   Leftover pictures added by override: `F6090+13BA8` (32x32) and three flat fills. Spec 1947 textures. Taint 0 failing of 5511.
   Walk `shots/v6/sheet.png`: title, menus, watercraft select, Dolphin Park warm-up with HUD. Pushed to Pages.
 
+- 15:00 Glyph arrays re-typeset (`drawn.ARRAYS`: name-entry keyboard 16x12, small 8x8 font, time digits, speed digits) and
+  cut-short label widths fixed by override (GLACIER COAST, TO ADVANCE, 2ND OR BETTER, 3 more; the partial last row is its own
+  record). Walk `shots/v8/sheet.png`: options, change names (typing works), view records all readable. Taint 0 failing. Pushed.
+
 ## Works
 - ROM map: 143 containers (129 MIO0 + raw), 84 scene load tables, segment map.
 - Texture spec: 2042+ textures and ~150 palettes (static display lists + run-time trace + frame arrays + guessed
@@ -72,6 +76,9 @@ Boots, menus readable, championship race starts (headless walk `D:/n64work/waver
 
 ## Known rough spots
 - The rider name under the select-screen preview is unreadable; stat bars on that screen are missing.
+- Options screens: background is black (retail: blue gradient); the Change Names backdrop is a garbled red/teal pattern.
+- Attract demo: some scenes show large pale planes over the water (fog or damaged geometry, not compared with retail yet).
+- Rider helmet icons, flags and small HUD icons (F6090+40FE0.., +2DF50..) are colour-grid blur.
 - Headless Edge failed once with "out of memory" (PC commit space low); checks wait when that happens.
 - `29F7E0+0`, `2A2150+0` are several images guessed as one tall image (regenerated, but as one blur).
 - The headless emulator sometimes runs at a few frames per second (machine load); one check hung and had to be stopped.
