@@ -77,10 +77,35 @@ def banner(t, lab):
     return img.astype(np.uint8)
 
 
+def glyphs(t, lab):
+    """A column of font cells (HUD font): one bold stroke glyph per cell, centred. IA: white ink, alpha = coverage."""
+    w, h, ch = t["w"], t["h"], lab["cell"]
+    m = np.zeros((h, w), np.float32)
+    for i, c in enumerate(lab["chars"]):
+        if (i + 1) * ch > h:
+            break
+        gh = ch - 3
+        if c in "'\"":
+            g = strokefont.render_line(c, gh, thickness=gh / 8.0)
+        elif c in ".-":
+            g = strokefont.render_line(c, gh, thickness=gh / 7.0)
+        else:
+            g = strokefont.render_line(c, gh, thickness=gh / 8.0)
+        g = _squeeze(g, w - 2)
+        x = (w - g.shape[1]) // 2
+        m[i * ch + 1:i * ch + 1 + gh, x:x + g.shape[1]] = g
+    img = np.zeros((h, w, 4), np.float32)
+    img[..., :3] = 255
+    img[..., 3] = np.clip(m, 0, 1) * 255
+    return img.astype(np.uint8)
+
+
 def hook(t):
     lab = LABELS.get(f"{t['c']:X}+{t['o']:X}")
     if lab and lab.get("style") == "banner" and t["fmt"] == 0:
         return banner(t, lab)
+    if lab and lab.get("style") == "glyphs":
+        return glyphs(t, lab)
     if lab and t["fmt"] in (3, 4):
         return label(t, lab)
     return None

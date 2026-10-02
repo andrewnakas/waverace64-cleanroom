@@ -39,9 +39,11 @@ retail pixels (textures the game loads from code). Publishing waits for those an
 - ROM map: 143 containers (129 MIO0 + raw), 84 scene load tables, segment map.
 - Texture spec: 2042+ textures and ~150 palettes (static display lists + run-time trace + frame arrays + guessed
   single images). Regeneration from colour grid + 2-bit alpha, palettes rebuilt, MIO0 re-compression, clean image builder.
-- Text labels re-typeset (menus, course names, messages, tutorial lines).
+- Text labels re-typeset (menus, course names, messages, tutorial lines), word banners (FINISH!, WON, LOST, DRAW, RETIRE,
+  1st-4th, NEW RECORD, TIME UP) and the HUD font strip (0-9 A-Z) redrawn. Previews: `D:/n64work/waverace64/shots/labels_clean.png`,
+  `banners.png`, `digits_clean.png` (rendered from our generator, not from the game).
 - Audio: all 309 samples resynthesised from outlines, own codebooks and loop states; 155 announcer lines = TTS placeholders.
-- **Taint: 0 failing of 5717 streams** (current clean ROM, labels re-typeset, 21:00).
+- **Taint: 0 failing of 5717 streams** (current clean ROM, 22:10).
 - Earlier clean ROM booted to title, menus and a race in headless Edge (EmulatorJS). The current one is unverified.
 
 ## BLOCKED (needs the user)
@@ -52,8 +54,8 @@ retail pixels (textures the game loads from code). Publishing waits for those an
 ## Next
 - Verify the clean ROM in the browser, then publish `andrewnakas/waverace64-cleanroom` + Pages.
 - Trace walks (championship, time trials, stunt, 2P, options, results) to confirm guessed sizes and find CI palettes.
-- Pictures: title logo, rider portraits, watercraft icons, FINISH / LOST / WON / RETIRE / 1st-4th banners, HUD digits
-  (currently colour-grid blur): draw briefs.
+- Pictures still colour-grid blur: title logo, rider portraits, watercraft icons, HUD speed digits / small icons: draw briefs
+  (needs the trace to know which texture is which).
 - 8 KB of small unknown gaps and the main code segment's data section: check for pixels.
 - Check the A button in menus on the clean build (earlier wall-clock runs lost presses; probably timing).
 

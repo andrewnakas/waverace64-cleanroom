@@ -1017,5 +1017,60 @@
    "TIME UP"
   ],
   "style": "banner"
+ },
+ "F6090+33CB8": {
+  "style": "glyphs",
+  "cell": 20,
+  "chars": "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ-'\"."
+ },
+ "2E5FB0+338C0": {
+  "style": "glyphs",
+  "cell": 18,
+  "chars": "0"
+ },
+ "2E5FB0+339E8": {
+  "style": "glyphs",
+  "cell": 18,
+  "chars": "1"
+ },
+ "2E5FB0+33B10": {
+  "style": "glyphs",
+  "cell": 18,
+  "chars": "2"
+ },
+ "2E5FB0+33C38": {
+  "style": "glyphs",
+  "cell": 18,
+  "chars": "3"
+ },
+ "2E5FB0+33D60": {
+  "style": "glyphs",
+  "cell": 18,
+  "chars": "4"
+ },
+ "2E5FB0+33E88": {
+  "style": "glyphs",
+  "cell": 18,
+  "chars": "5"
+ },
+ "2E5FB0+33FB0": {
+  "style": "glyphs",
+  "cell": 18,
+  "chars": "6"
+ },
+ "2E5FB0+340D8": {
+  "style": "glyphs",
+  "cell": 18,
+  "chars": "7"
+ },
+ "2E5FB0+34200": {
+  "style": "glyphs",
+  "cell": 18,
+  "chars": "8"
+ },
+ "2E5FB0+34328": {
+  "style": "glyphs",
+  "cell": 18,
+  "chars": "9"
  }
 }
